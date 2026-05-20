@@ -1,0 +1,92 @@
+# ──────────────────────────────────────────────────────────────────
+# TxTrace — public-repo lean mode (HackathonHunter hard rule #30)
+# Ships: src/, public/, move/, tests/, package.json, pnpm-lock.yaml,
+# tsconfig.json, next.config.ts, eslint.config.mjs, postcss.config.mjs,
+# playwright.config.ts, README.md, LICENSE, docs/ARCHITECTURE.md
+# ──────────────────────────────────────────────────────────────────
+
+# deps
+node_modules/
+.pnpm-store/
+
+# next
+.next/
+out/
+build/
+.next-cache/
+.next-dev-*.log
+
+# env (never commit)
+.env
+.env.*
+.env.local
+.env.shared
+.env.shared.local
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# editor / os
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.pem
+
+# playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# typescript / build cache
+*.tsbuildinfo
+
+# move build
+move/build/
+
+# hackathon submission scratchpads (never push — they live local for the form)
+pitch/
+SUBMISSION.md
+task_plan.md
+bounty_brief.md
+notes.md
+project_prd.md
+project_prd.zh.md
+idea.md
+draft.md
+user_cases.md
+stack.lock.json
+
+# design working files (Figma exports, mockups) — keep local
+docs/ui-mockups/
+docs/DEMO_SCRIPT.md
+docs/recording-setup.md
+docs/zh/
+
+# internal data / caches
+.txtrace-data/
+runs.json
+data/
+
+# generated brand assets that re-build on next run
+public/og.svg
+
+# video / audio binaries that escape pitch/ (defence in depth)
+*.mp4
+*.webm
+*.mp3
+*.wav
+*.srt
+*.vtt
+*.m4a
+*.flac
+*.gif
+!public/**/*.gif
+!public/**/*.mp4
+!public/**/*.webm
