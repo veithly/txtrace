@@ -36,7 +36,15 @@ export function getDemoAddress() {
 }
 
 export function explorerTxUrl(digest: string) {
-  return `https://suivision.xyz/txblock/${digest}?network=${getSuiNetwork()}`;
+  const net = getSuiNetwork();
+  const sub = net === "testnet" ? "testnet." : net === "devnet" ? "devnet." : "";
+  return `https://${sub}suivision.xyz/txblock/${digest}`;
+}
+
+export function explorerAccountUrl(addr: string) {
+  const net = getSuiNetwork();
+  const sub = net === "testnet" ? "testnet." : net === "devnet" ? "devnet." : "";
+  return `https://${sub}suivision.xyz/account/${addr}`;
 }
 
 export function shortDigest(digest: string) {

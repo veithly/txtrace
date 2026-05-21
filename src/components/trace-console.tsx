@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Icon } from "@iconify/react/dist/iconify.js";
 import { Transaction } from "@mysten/sui/transactions";
 import { useOptionalCurrentAccount, useOptionalDAppKit } from "@/lib/dapp-kit-safe";
 
@@ -124,7 +125,7 @@ export function TraceConsole() {
         ) : null}
         {liveDigest ? (
           <a
-            href={`https://suivision.xyz/txblock/${liveDigest}?network=testnet`}
+            href={`https://testnet.suivision.xyz/txblock/${liveDigest}`}
             target="_blank"
             rel="noreferrer"
             className="mt-3 inline-block break-all text-xs text-accent underline"
@@ -170,7 +171,12 @@ export function TraceConsole() {
                     <div className="font-mono text-sm">{s.label}</div>
                     {s.detail ? <div className="text-xs text-muted">{s.detail}</div> : null}
                   </div>
-                  <span className={s.ok ? "text-accent" : "text-danger"}>{s.ok ? "✓" : "✗"}</span>
+                  <Icon
+                    icon={s.ok ? "ph:check-circle-fill" : "ph:x-circle-fill"}
+                    width={14}
+                    height={14}
+                    className={s.ok ? "text-accent" : "text-danger"}
+                  />
                 </motion.li>
               ))}
               {!resp.decoded?.steps?.length ? (

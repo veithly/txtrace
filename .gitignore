@@ -16,6 +16,10 @@ build/
 .next-cache/
 .next-dev-*.log
 
+# opennext cloudflare build output
+.open-next/
+.wrangler/
+
 # env (never commit)
 .env
 .env.*

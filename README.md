@@ -5,7 +5,7 @@
 *Catch every PTB. See every step. Fix the failing one in 30 seconds.*
 
 [![Live](https://img.shields.io/badge/Live-Open_app-22c55e?style=for-the-badge)](https://txtrace.vercel.app)
-[![Network](https://img.shields.io/badge/Network-Sui_Testnet-0891b2?style=for-the-badge)](https://suivision.xyz/?network=testnet)
+[![Network](https://img.shields.io/badge/Network-Sui_Testnet-0891b2?style=for-the-badge)](https://testnet.suivision.xyz)
 [![Decoder](https://img.shields.io/badge/Decoder-OSS-f59e0b?style=for-the-badge)](./src/lib/ptb-decoder.ts)
 [![License](https://img.shields.io/badge/license-MIT-22c55e?style=for-the-badge)](./LICENSE)
 

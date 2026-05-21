@@ -93,9 +93,11 @@ Given a programmable transaction trace, write <= 6 short sentences in plain Engl
 - and the most likely fix.
 Do not invent new step names. Cite the failing step number explicitly. Output English text only.`;
   const user = JSON.stringify(decoded, null, 2);
-  const { content, provider, model } = await llmChat(
+  const { content } = await llmChat(
     [{ role: "system", content: sys }, { role: "user", content: user }],
     { temperature: 0.3, max_tokens: 1800 },
   );
-  return { content, provider: `${provider}/${model}` };
+  // Maturity-sweep (hard rule #28): user-visible provider label is the TxTrace
+  // product name, not the upstream model.
+  return { content, provider: "Reasoning engine" };
 }

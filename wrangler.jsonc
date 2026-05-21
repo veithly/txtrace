@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "suioverflow-txtrace",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-12-30",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "SUI_NETWORK": "testnet",
+    "SUI_FULLNODE_URL": "https://fullnode.testnet.sui.io:443",
+    "NEXT_PUBLIC_SUI_FULLNODE_URL": "https://fullnode.testnet.sui.io:443",
+    "STEPFUN_API_BASE": "https://api.stepfun.com/v1",
+    "STEPFUN_LLM_MODEL": "step-3.6",
+    "OPENAI_LLM_MODEL": "gpt-4o-mini",
+    "NEXT_PRIVATE_MINIMAL_MODE": "1"
+  }
+}
