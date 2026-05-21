@@ -18,6 +18,7 @@
     "SUI_NETWORK": "testnet",
     "SUI_FULLNODE_URL": "https://fullnode.testnet.sui.io:443",
     "NEXT_PUBLIC_SUI_FULLNODE_URL": "https://fullnode.testnet.sui.io:443",
+    "NEXT_PUBLIC_APP_URL": "https://suioverflow-txtrace.veithly.workers.dev",
     "STEPFUN_API_BASE": "https://api.stepfun.com/v1",
     "STEPFUN_LLM_MODEL": "step-3.6",
     "OPENAI_LLM_MODEL": "gpt-4o-mini",
