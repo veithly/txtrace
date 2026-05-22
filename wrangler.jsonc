@@ -19,6 +19,8 @@
     "SUI_FULLNODE_URL": "https://fullnode.testnet.sui.io:443",
     "NEXT_PUBLIC_SUI_FULLNODE_URL": "https://fullnode.testnet.sui.io:443",
     "NEXT_PUBLIC_APP_URL": "https://txtrace.veithly.workers.dev",
+    "NEXT_PUBLIC_MOVE_PACKAGE_ID": "0x61509f3f0cadeba6f4268dea7ac7840ea88c82630a4650c1d346018a09c7860a",
+    "MOVE_PACKAGE_ID": "0x61509f3f0cadeba6f4268dea7ac7840ea88c82630a4650c1d346018a09c7860a",
     "STEPFUN_API_BASE": "https://api.stepfun.com/v1",
     "STEPFUN_LLM_MODEL": "step-3.6",
     "OPENAI_LLM_MODEL": "gpt-4o-mini",

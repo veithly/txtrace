@@ -4,6 +4,8 @@ import { formatDigest } from "@mysten/sui/utils";
 
 export type SuiNetwork = "testnet" | "devnet";
 
+export const CLOCK_OBJECT_ID = "0x6";
+
 const RPC_URLS: Record<SuiNetwork, string> = {
   testnet: "https://fullnode.testnet.sui.io:443",
   devnet: "https://fullnode.devnet.sui.io:443",
@@ -35,6 +37,11 @@ export function getDemoAddress() {
   return getDemoKeypair()?.toSuiAddress() ?? null;
 }
 
+export function getMovePackageId(envKey = "NEXT_PUBLIC_MOVE_PACKAGE_ID") {
+  const value = process.env[envKey] || process.env.MOVE_PACKAGE_ID || "";
+  return value.trim() || null;
+}
+
 export function explorerTxUrl(digest: string) {
   const net = getSuiNetwork();
   const sub = net === "testnet" ? "testnet." : net === "devnet" ? "devnet." : "";
@@ -49,6 +56,21 @@ export function explorerAccountUrl(addr: string) {
 
 export function shortDigest(digest: string) {
   return formatDigest(digest);
+}
+
+export function stringToBytes(value: string) {
+  return Array.from(new TextEncoder().encode(value));
+}
+
+export function firstCreatedObjectId(
+  result: { objectChanges?: Array<{ type: string; objectId?: string; objectType?: string }> | null },
+  objectTypePart?: string,
+) {
+  const created = result.objectChanges?.find((change) => {
+    if (change.type !== "created" || !change.objectId) return false;
+    return objectTypePart ? change.objectType?.includes(objectTypePart) : true;
+  });
+  return created?.objectId ?? null;
 }
 
 export async function getNetworkStatus() {
@@ -69,6 +91,7 @@ export async function getNetworkStatus() {
     checkpoint: checkpoint.toString(),
     referenceGasPrice: gasPrice.toString(),
     totalTransactions: totalTransactions.toString(),
+    packageId: getMovePackageId(),
     demo: {
       configured: Boolean(keypair),
       address: demoAddress,
@@ -76,3 +99,4 @@ export async function getNetworkStatus() {
     },
   };
 }
+

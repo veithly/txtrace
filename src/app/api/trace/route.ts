@@ -38,7 +38,7 @@ export async function POST(req: Request) {
   const { input, mode } = parsed.data;
 
   if (mode === "demo") {
-    const explanation = await aiExplain(DEMO_FAILING_TRACE.decoded);
+    const explanation = await safeAiExplain(DEMO_FAILING_TRACE.decoded);
     return NextResponse.json({ ...DEMO_FAILING_TRACE, explanation });
   }
 
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
         options: { showInput: true, showEffects: true, showObjectChanges: true, showEvents: true },
       });
       const decoded = decodeTransactionBlock(resp);
-      const explanation = decoded.errorAt !== null ? await aiExplain({
+      const explanation = decoded.errorAt !== null ? await safeAiExplain({
         steps: decoded.steps,
         errorAt: decoded.errorAt,
         gasUsedMist: decoded.gasUsedMist,
@@ -100,4 +100,21 @@ Do not invent new step names. Cite the failing step number explicitly. Output En
   // Maturity-sweep (hard rule #28): user-visible provider label is the TxTrace
   // product name, not the upstream model.
   return { content, provider: "Reasoning engine" };
+}
+
+async function safeAiExplain(decoded: { steps: { index: number; kind: string; label: string; ok: boolean; detail?: string }[]; errorAt: number | null; gasUsedMist: string | null; statusText: string }) {
+  try {
+    return await aiExplain(decoded);
+  } catch {
+    const failing = decoded.errorAt === null
+      ? "No failing step was found."
+      : `Step ${decoded.errorAt} failed.`;
+    const detail = decoded.errorAt === null
+      ? "The transaction decoded successfully, so no abort explanation is needed."
+      : decoded.steps.find((step) => step.index === decoded.errorAt)?.detail ?? "The abort detail was not available from RPC.";
+    return {
+      content: `${failing} ${detail} Review the highlighted command arguments and compare them against the target Move function signature.`,
+      provider: "Deterministic fallback",
+    };
+  }
 }
